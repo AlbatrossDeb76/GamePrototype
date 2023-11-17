@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5ipvamq028nb"]
+
+[ext_resource type="ArrayMesh" uid="uid://c5wr13a7v076x" path="res://manicanPROTOTYPE.obj" id="1_m8162"]
+[ext_resource type="Script" path="res://camera.gd" id="2_xanv5"]
+
+[node name="Node3D" type="CharacterBody3D"]
+
+[node name="ManicanPrototype" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00872653, -0.999962, 0, 0.999962, -0.00872653, 0.104596, 0, 1.48878)
+mesh = ExtResource("1_m8162")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="camroot" type="Node3D" parent="."]
+process_mode = 3
+process_priority = 1
+process_physics_priority = 1
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 3
+script = ExtResource("2_xanv5")
+
+[node name="h" type="Node3D" parent="camroot"]
+transform = Transform3D(0.999932, 0, 0.011676, 0, 1, 0, -0.011676, 0, 0.999932, 0, 0, 1.55645)
+
+[node name="v" type="Node3D" parent="camroot/h"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37236, 1.4865)
+
+[node name="Camera3D" type="Camera3D" parent="camroot/h/v"]
+transform = Transform3D(1, 0, 2.79397e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0.0153064, -0.463669, 2.6342)

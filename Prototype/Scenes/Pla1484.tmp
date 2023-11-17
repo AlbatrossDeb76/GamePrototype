@@ -1,0 +1,130 @@
+[gd_scene load_steps=16 format=3 uid="uid://c5ipvamq028nb"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_xpdbr"]
+[ext_resource type="PackedScene" uid="uid://d1u71oisx0rqg" path="res://Models/Female Lowpoly Mesh.glb" id="2_b3joj"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="3_2xiet"]
+[ext_resource type="PackedScene" uid="uid://dypuccq804ypv" path="res://Scenes/PauseMenu.tscn" id="4_4rryk"]
+[ext_resource type="Shader" path="res://Scenes/pixelShader.gdshader" id="5_omv8d"]
+[ext_resource type="Texture2D" uid="uid://cu8c6qb7fbd0e" path="res://Models/reticle.png" id="6_hg116"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yco7f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b16p2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ghq4n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rhucv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0i1rj"]
+
+[sub_resource type="Sky" id="Sky_skn66"]
+sky_material = SubResource("ProceduralSkyMaterial_0i1rj")
+
+[sub_resource type="Environment" id="Environment_paksn"]
+background_mode = 2
+sky = SubResource("Sky_skn66")
+ambient_light_source = 3
+ambient_light_color = Color(0.662745, 0.713726, 0.917647, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh0i4"]
+render_priority = 0
+shader = ExtResource("5_omv8d")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mqi7d"]
+material = SubResource("ShaderMaterial_qh0i4")
+size = Vector2(10, 10)
+
+[node name="Player" type="CharacterBody3D"]
+process_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_xpdbr")
+
+[node name="Lowpoly" parent="." instance=ExtResource("2_b3joj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, 1.19209e-07, 0)
+
+[node name="testmesh" type="MeshInstance3D" parent="Lowpoly"]
+transform = Transform3D(1.01552, 0, 0, 0, 1.5, 0, 0, 0, 0.607557, -0.156161, 1.37998, 1.20814)
+mesh = SubResource("PlaneMesh_yco7f")
+skeleton = NodePath("ShapeCast3D")
+surface_material_override/0 = SubResource("ShaderMaterial_b16p2")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Lowpoly/testmesh"]
+transform = Transform3D(1.97545, 0, 0, 0, 1, 0, 0, 0, 1.93132, 0.0575024, -0.00412953, -1.98899)
+enabled = false
+shape = SubResource("BoxShape3D_ghq4n")
+target_position = Vector3(0, 0, 1)
+collision_mask = 2
+debug_shape_custom_color = Color(0.643137, 0.298039, 0.658824, 1)
+
+[node name="Marker3D" type="Marker3D" parent="Lowpoly/testmesh"]
+transform = Transform3D(1.47707, 0, 0, 0, 1, 0, 0, 0, 2.4689, 0.153774, -0.91999, -5.58802)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.264478, 0)
+shape = SubResource("BoxShape3D_rhucv")
+
+[node name="camroot" type="Node3D" parent="."]
+process_mode = 1
+process_priority = 1
+process_physics_priority = 1
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 3
+editor_description = "RIG FOR CAMERA MOVEMENT
+H = HORIZONTAL
+V = VERTICAL
+**NEEDS LIMITS CAN ROTATE FREELY"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.36364)
+script = ExtResource("3_2xiet")
+
+[node name="h" type="Node3D" parent="camroot"]
+process_mode = 1
+transform = Transform3D(-0.999997, 0, 0.00261798, 0, 1, 0, -0.00261798, 0, -0.999997, 0, 0, -1.35758)
+
+[node name="v" type="Node3D" parent="camroot/h"]
+process_mode = 1
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 2.71409, -0.315066)
+
+[node name="Camera3D" type="Camera3D" parent="camroot/h/v"]
+process_mode = 1
+transform = Transform3D(1, 0.00124986, 6.70793e-05, -0.00124986, 0.994254, 0.107038, 6.70889e-05, -0.107038, 0.994256, -0.0107359, 0.28001, 6.59399)
+environment = SubResource("Environment_paksn")
+doppler_tracking = 2
+current = true
+fov = 80.0
+
+[node name="Control" parent="camroot/h/v/Camera3D" instance=ExtResource("4_4rryk")]
+visible = false
+anchors_preset = -1
+anchor_top = 0.471
+anchor_right = 0.601
+anchor_bottom = 0.578
+offset_top = 18.792
+offset_right = -116.352
+offset_bottom = -50.544
+scale = Vector2(0.5, 0.5)
+focus_mode = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="camroot/h/v/Camera3D"]
+transform = Transform3D(0.770479, -3.20415e-09, -3.71074e-10, 5.10227e-10, 0.954069, 1.78814e-07, -1.27329e-10, -7.45058e-09, 1.24285, 0.000397321, -0.229138, -1.65383)
+visible = false
+mesh = SubResource("QuadMesh_mqi7d")
+
+[node name="Reticle" type="Sprite2D" parent="camroot/h/v/Camera3D"]
+visible = false
+position = Vector2(321, 212)
+texture = ExtResource("6_hg116")
+
+[node name="Dash_Time" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[node name="Att_Time" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[connection signal="lock_on" from="." to="camroot" method="_on_player_lock_on"]
+[connection signal="focus_entered" from="camroot/h/v/Camera3D/Control" to="." method="_on_control_focus_entered"]
+[connection signal="gui_input" from="camroot/h/v/Camera3D/Control" to="." method="_on_control_gui_input"]

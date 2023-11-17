@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://dypuccq804ypv"]
+
+[ext_resource type="Script" path="res://Scenes/PauseMenu.gd" id="1_qr6f8"]
+
+[sub_resource type="Theme" id="Theme_gx7dh"]
+
+[sub_resource type="Theme" id="Theme_5depe"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/styles/disabled = null
+
+[node name="Control" type="Control"]
+process_mode = 3
+top_level = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = 50.0
+offset_right = -42.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qr6f8")
+
+[node name="VBoxContainer" type="GridContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.484
+anchor_top = 0.333
+anchor_right = 0.613
+anchor_bottom = 0.489
+offset_left = -52.5679
+offset_top = 43.216
+offset_right = -52.1759
+offset_bottom = 43.128
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gx7dh")
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+text = "Resume
+"
+
+[node name="Reset" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_5depe")
+action_mode = 0
+text = "Reset"
+text_direction = 1
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit
+"
+
+[connection signal="button_down" from="VBoxContainer/Resume" to="." method="_on_resume_button_down"]
+[connection signal="button_up" from="VBoxContainer/Reset" to="." method="_on_reset_button_up"]
+[connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]

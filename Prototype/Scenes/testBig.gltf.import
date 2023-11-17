@@ -1,0 +1,110 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://d4gugyeii13a0"
+path="res://.godot/imported/testBig.gltf-5f07e354b258649cbe5570ecd9dedea3.scn"
+
+[deps]
+
+source_file="res://Scenes/testBig.gltf"
+dest_files=["res://.godot/imported/testBig.gltf-5f07e354b258649cbe5570ecd9dedea3.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Object 1095": {
+"import/skip_import": true
+},
+"PATH:Object 1218": {
+"import/skip_import": true
+},
+"PATH:Object Box 01": {
+"import/skip_import": true
+},
+"PATH:Object Box 012": {
+"import/skip_import": true
+},
+"PATH:Object Box 02": {
+"import/skip_import": true
+},
+"PATH:Object Box 022": {
+"import/skip_import": true
+},
+"PATH:Object Box 023": {
+"import/skip_import": true
+},
+"PATH:Object Box 024": {
+"import/skip_import": true
+},
+"PATH:Object Box 03": {
+"import/skip_import": true
+},
+"PATH:Object Box 032": {
+"import/skip_import": true
+},
+"PATH:Object Box 04": {
+"import/skip_import": true
+},
+"PATH:Object Box 042": {
+"import/skip_import": true
+},
+"PATH:Object Box 043": {
+"import/skip_import": true
+},
+"PATH:Object Box 05": {
+"import/skip_import": true
+},
+"PATH:Object Box 052": {
+"import/skip_import": true
+},
+"PATH:Object Box 06": {
+"import/skip_import": true
+},
+"PATH:Object Box 062": {
+"import/skip_import": true
+},
+"PATH:Object Box 07": {
+"import/skip_import": true
+},
+"PATH:Object Box 072": {
+"import/skip_import": true
+},
+"PATH:Object Box 073": {
+"import/skip_import": true
+},
+"PATH:Object Box 08": {
+"import/skip_import": true
+},
+"PATH:Object Box 082": {
+"import/skip_import": true
+},
+"PATH:Object Box 083": {
+"import/skip_import": true
+},
+"PATH:Object Box 084": {
+"import/skip_import": true
+},
+"PATH:default2": {
+"import/skip_import": true
+}
+}
+}
+gltf/embedded_image_handling=1

@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1swcfgbxta8j"]
+
+[ext_resource type="PackedScene" uid="uid://c5ipvamq028nb" path="res://Player.tscn" id="1_fv245"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58uvs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sqvgf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82nji"]
+
+[sub_resource type="Environment" id="Environment_qeati"]
+background_mode = 5
+ambient_light_source = 3
+ambient_light_color = Color(0.733333, 0.541176, 0.67451, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hrns7"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_58uvs")
+mesh = SubResource("BoxMesh_sqvgf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_82nji")
+
+[node name="Ground2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.331153, 0, 0, 0, 1, 0, 0, 0, 0.21621, 17.3088, 1.95555, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground2"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_58uvs")
+mesh = SubResource("BoxMesh_sqvgf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_82nji")
+
+[node name="Ground3" type="StaticBody3D" parent="."]
+transform = Transform3D(0.00822877, -0.308077, -0.205624, -0.0771605, 0.923344, -0.0659862, 0.321933, 0.22918, -0.0105596, 35.5993, 1.95555, -13.7082)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground3"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_58uvs")
+mesh = SubResource("BoxMesh_sqvgf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground3"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_82nji")
+
+[node name="Ground4" type="StaticBody3D" parent="."]
+transform = Transform3D(0.321872, -0.101468, 0.0458526, 0.0238112, 0.987143, 0.0308652, -0.0741228, -0.123505, 0.209026, 45.5108, 1.95555, 0.591708)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground4"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_58uvs")
+mesh = SubResource("BoxMesh_sqvgf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground4"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_82nji")
+
+[node name="Player" parent="." instance=ExtResource("1_fv245")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0714247, 0.07641, 0)
+disable_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qeati")
+camera_attributes = SubResource("CameraAttributesPractical_hrns7")

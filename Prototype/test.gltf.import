@@ -1,0 +1,71 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://hqs3612lpmhn"
+path="res://.godot/imported/test.gltf-afa2bcae65710d875ec5dbe1441f37b6.scn"
+
+[deps]
+
+source_file="res://test.gltf"
+dest_files=["res://.godot/imported/test.gltf-afa2bcae65710d875ec5dbe1441f37b6.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Object 1095": {
+"import/skip_import": true
+},
+"PATH:Object 1218": {
+"import/skip_import": true
+},
+"PATH:Object Box 01": {
+"import/skip_import": true
+},
+"PATH:Object Box 02": {
+"import/skip_import": true
+},
+"PATH:Object Box 03": {
+"import/skip_import": true
+},
+"PATH:Object Box 04": {
+"import/skip_import": true
+},
+"PATH:Object Box 05": {
+"import/skip_import": true
+},
+"PATH:Object Box 06": {
+"import/skip_import": true
+},
+"PATH:Object Box 07": {
+"import/skip_import": true
+},
+"PATH:Object Box 08": {
+"import/skip_import": true
+},
+"PATH:Spotlight": {
+"import/skip_import": true
+},
+"PATH:default2": {
+"import/skip_import": true
+}
+}
+}
+gltf/embedded_image_handling=1
