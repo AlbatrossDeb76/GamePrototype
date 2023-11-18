@@ -1,6 +1,5 @@
-extends VisibleOnScreenNotifier3D
-signal _visible
-signal not_visible
+extends Node3D
+signal testDamage
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,7 +8,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_on_screen():
-		emit_signal("_visible")
-	else:
-		emit_signal("not_visible")
+	pass
+
+
+func _on_player_hit():
+	print("here")
+	testDamage.emit()

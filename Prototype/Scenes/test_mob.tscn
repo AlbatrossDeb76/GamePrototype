@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://3du4gfubaqam"]
+[gd_scene load_steps=6 format=3 uid="uid://3du4gfubaqam"]
 
 [ext_resource type="Script" path="res://Scenes/test_mob.gd" id="1_c5ujf"]
 [ext_resource type="Script" path="res://Scenes/on_Screen.gd" id="2_rrimt"]
@@ -8,7 +8,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_v7sg2"]
 size = Vector3(1, 1, 0.793764)
 
-[node name="TestMob" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_01mro"]
+
+[node name="TestMob" type="Node3D" groups=["Hostile"]]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 disable_mode = 2
@@ -21,6 +23,7 @@ mesh = SubResource("CapsuleMesh_ggqey")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0220642, -0.0105591, -0.000366211)
 disable_mode = 2
 collision_layer = 3
 collision_mask = 3
@@ -29,9 +32,13 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1.81836, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_v7sg2")
 
-[node name="on_Screen" type="VisibleOnScreenNotifier3D" parent="."]
+[node name="CapsuleShape" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_01mro")
+
+[node name="on_Screen" type="VisibleOnScreenNotifier3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.495152, 0.38269, 0.523422)
 aabb = AABB(-1, -1, -1, 1, 1, 1)
 script = ExtResource("2_rrimt")
 
-[connection signal="_visable" from="on_Screen" to="CharacterBody3D" method="on_screen"]
-[connection signal="screen_exited" from="on_Screen" to="CharacterBody3D" method="on_screen_screen_exited"]
+[connection signal="_visible" from="CharacterBody3D/on_Screen" to="CharacterBody3D" method="on_screen__visible"]
+[connection signal="not_visible" from="CharacterBody3D/on_Screen" to="CharacterBody3D" method="screen_not_visible"]

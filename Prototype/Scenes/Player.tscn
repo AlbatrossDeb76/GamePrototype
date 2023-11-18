@@ -11,7 +11,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b16p2"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ghq4n"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qae4e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rhucv"]
 
@@ -42,22 +42,26 @@ script = ExtResource("1_xpdbr")
 [node name="Lowpoly" parent="." instance=ExtResource("2_b3joj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, 1.19209e-07, 0)
 
+[node name="Marker3D" type="Marker3D" parent="Lowpoly"]
+transform = Transform3D(1.49999, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.32134e-07, -5.00679e-06, -2.1869)
+
 [node name="testmesh" type="MeshInstance3D" parent="Lowpoly"]
-transform = Transform3D(1.01552, 0, 0, 0, 1.5, 0, 0, 0, 0.607557, -0.156161, 1.37998, 1.20814)
+transform = Transform3D(0.539337, 0, 0, 0, 1.5, 0, 0, 0, 0.500016, -0.156161, 1.37998, 0.739106)
 mesh = SubResource("PlaneMesh_yco7f")
-skeleton = NodePath("ShapeCast3D")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_b16p2")
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="Lowpoly/testmesh"]
-transform = Transform3D(1.97545, 0, 0, 0, 1, 0, 0, 0, 1.93132, 0.0575024, -0.00412953, -1.98899)
+[node name="attk" type="ShapeCast3D" parent="Lowpoly/testmesh"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 2
+transform = Transform3D(1.97545, 0, 0, 0, 0.244335, 0, 0, 0, 1.93132, 0.055803, 0.228728, -0.0103457)
 enabled = false
-shape = SubResource("BoxShape3D_ghq4n")
-target_position = Vector3(0, 0, 1)
-collision_mask = 2
-debug_shape_custom_color = Color(0.643137, 0.298039, 0.658824, 1)
-
-[node name="Marker3D" type="Marker3D" parent="Lowpoly/testmesh"]
-transform = Transform3D(1.47707, 0, 0, 0, 1, 0, 0, 0, 2.4689, 0.153774, -0.91999, -5.58802)
+shape = SubResource("BoxShape3D_qae4e")
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.133333, 0.607843, 0.858824, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.264478, 0)

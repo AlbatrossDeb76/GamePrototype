@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c20bc63b3hh0y"]
+[gd_scene load_steps=11 format=3 uid="uid://c20bc63b3hh0y"]
 
 [ext_resource type="PackedScene" uid="uid://hqs3612lpmhn" path="res://test.gltf" id="1_qmuxa"]
+[ext_resource type="Script" path="res://SignalTower.gd" id="2_2uofs"]
 [ext_resource type="PackedScene" uid="uid://c5ipvamq028nb" path="res://Scenes/Player.tscn" id="2_wqnm7"]
 [ext_resource type="PackedScene" uid="uid://ckoyyelnqh6if" path="res://Scenes/box_prefab.tscn" id="3_i2wyh"]
 [ext_resource type="PackedScene" uid="uid://3du4gfubaqam" path="res://Scenes/test_mob.tscn" id="3_uf0fo"]
@@ -17,10 +18,14 @@
 [node name="WorldBox" instance=ExtResource("1_qmuxa")]
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0166626, 0, -0.00878906)
+script = ExtResource("2_2uofs")
 
 [node name="Object Floor" parent="." index="0"]
 transform = Transform3D(4.70529, 0, 0, 0, 1, 0, 0, 0, 5.15317, 19.164, 6, 15.8411)
 visible = false
+lod_bias = 2.48
+visibility_range_end = 2.85
+visibility_range_fade_mode = 1
 
 [node name="TestMob" parent="." index="1" instance=ExtResource("3_uf0fo")]
 transform = Transform3D(1.23345, 0, 0, 0, 1.23345, 0, 0, 0, 1.23345, -0.0220618, 3.38618, 11.8311)
@@ -28,39 +33,20 @@ metadata/_edit_group_ = true
 
 [node name="Box_prefab" parent="." index="2" instance=ExtResource("3_i2wyh")]
 transform = Transform3D(1.23345, 0, 0, 0, 1.23345, 0, 0, 0, 1.23345, -5.48755, 0.349457, 2.8335)
-collision_layer = 3
-collision_mask = 3
+collision_mask = 0
 
-[node name="Box_prefab3" parent="." index="3" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(1.23345, 0, 0, 0, 1.23345, 0, 0, 0, 1.23345, -10.1547, 3.0323, -8.67505)
+[node name="Player" parent="." index="3" instance=ExtResource("2_wqnm7")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 
-[node name="Box_prefab5" parent="." index="4" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(1.23345, 0, 0, 0, 1.23345, 0, 0, 0, 1.23345, -10.65, 7.78598, -22.7285)
+[node name="attk" parent="Player/Lowpoly/testmesh" index="1"]
+collision_mask = 2
 
-[node name="Box_prefab7" parent="." index="5" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(1.23345, 0, 0, 0, 1.23345, 0, 0, 0, 1.23345, -15.7485, 10.8845, -33.4843)
+[node name="att_cooldown" type="Timer" parent="Player" index="5"]
+one_shot = true
 
-[node name="Box_prefab8" parent="." index="6" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(1.23345, 0, 0, 0, 1.23345, 0, 0, 0, 1.23345, -17.5571, 15.0144, -44.2856)
-
-[node name="Box_prefab2" parent="." index="7" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(2.18775, -0.0339253, -0.536284, 0.239204, 1.21099, 0.215989, 0.929406, -0.231819, 1.20678, -29.5373, 20.644, -39.3893)
-
-[node name="Box_prefab4" parent="." index="8" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(2.18775, -0.0339253, -0.536284, 0.239204, 1.21099, 0.215989, 0.929406, -0.231819, 1.20678, -34.964, 20.7893, -54.3225)
-
-[node name="Box_prefab6" parent="." index="9" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(2.18775, -0.0339253, -0.536284, 0.239204, 1.21099, 0.215989, 0.929406, -0.231819, 1.20678, -31.367, 22.9491, -68.8593)
-
-[node name="Box_prefab9" parent="." index="10" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(2.18775, -0.0339253, -0.536284, 0.239204, 1.21099, 0.215989, 0.929406, -0.231819, 1.20678, -36.7937, 23.0945, -83.7925)
-
-[node name="Box_prefab10" parent="." index="11" instance=ExtResource("3_i2wyh")]
-transform = Transform3D(2.18775, -0.0339253, -0.536284, 0.239204, 1.21099, 0.215989, 0.929406, -0.231819, 1.20678, -36.5407, 25.6087, -96.3681)
-
-[node name="Player" parent="." index="12" instance=ExtResource("2_wqnm7")]
-
-[node name="testBig" parent="." index="13" instance=ExtResource("4_72j23")]
+[node name="testBig" parent="." index="4" instance=ExtResource("4_72j23")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7591, 0, 7.3545)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="testBig" index="1"]
@@ -71,6 +57,12 @@ physics_material_override = SubResource("PhysicsMaterial_wapk0")
 transform = Transform3D(98.4591, 0, 0, 0, 1, 0, 0, 0, 85.3264, -37.4013, -0.476379, -32.5046)
 shape = SubResource("BoxShape3D_t7o7w")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="14"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
 environment = SubResource("Environment_xnd8u")
 camera_attributes = SubResource("CameraAttributesPractical_awwas")
+
+[connection signal="testDamage" from="." to="TestMob/CharacterBody3D" method="_on_world_box_test_damage"]
+[connection signal="_hit" from="Player" to="." method="_on_player_hit"]
+
+[editable path="TestMob"]
+[editable path="Player"]

@@ -17,7 +17,7 @@ func _process(delta):
 		$h.rotation_degrees.y += look.x * speed
 		$h/v.rotation_degrees.x -= look.y * speed
 		var camera_rotation = $h.rotation_degrees
-		var direction = Vector3(look.x, 0, look.y).rotated(Vector3(0, 1, 0), camera_rotation.y).normalized()
+		#var direction = Vector3(look.x, 0, look.y).rotated(Vector3(0, 1, 0), camera_rotation.y).normalized()
 		
 		
 	

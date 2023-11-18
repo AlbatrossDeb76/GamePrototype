@@ -10,11 +10,11 @@ var hasTouchedGround
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var input_dir
 signal _lock_on
-signal _hit(test_mob, damage)
+signal _hit
 	
 
 @onready var camera = $camroot/h/v/Camera3D.get_viewport().get_camera_3d()
-@onready var test_mob = preload("res://Scenes/test_mob.tscn")
+
 #gets input and sets the cam
 func get_camera_relative_input(input) -> Vector3:
 	#Relative x values
@@ -47,7 +47,8 @@ func _input(event):
 			velocity.z = velocity.z * DASH_VELOCITY
 			velocity.x = velocity.x * DASH_VELOCITY
 	#WIP
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and $att_cooldown.time_left == 0:
+		$att_cooldown.start(.45)
 		_Attack()
 	#nothing yet
 	if Input.is_action_just_pressed("lock_on"):
@@ -63,7 +64,7 @@ func _physics_process(delta):
 	if  $Dash_Time.time_left == 0:
 		dashing = false
 		#moves in the given direction, reletive to camera input. offset the pos of the vector to avoid an error i dont know how to fix	
-		$Lowpoly.look_at($Lowpoly/testmesh/Marker3D.global_transform.origin + Vector3(-get_camera_relative_input(input_dir).x, 0, -get_camera_relative_input(input_dir).z) + Vector3(.0001 ,0 ,0), Vector3.UP)
+		$Lowpoly.look_at($Lowpoly/Marker3D.global_transform.origin + Vector3(-get_camera_relative_input(input_dir).x, 0, -get_camera_relative_input(input_dir).z) + Vector3(.0001 ,0 ,0), Vector3.UP)
 		#basic movent
 		velocity.x = get_camera_relative_input(input_dir).x * SPEED
 		velocity.z = get_camera_relative_input(input_dir).z * SPEED
@@ -72,7 +73,7 @@ func _physics_process(delta):
 	#cooldown timer for the attack button
 	if $Att_Time.time_left == 0:
 		$Lowpoly/testmesh.visible = false
-		$Lowpoly/testmesh/ShapeCast3D.enabled = false
+		$Lowpoly/testmesh/attk.enabled = false
 	
 	if(is_on_floor()):
 		hasTouchedGround = true
@@ -84,21 +85,25 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _Attack():
-	$Att_Time.start(.15)
-	if $Att_Time.time_left > 0:
-		#turns on the colision shape for the attack
-		$Lowpoly/testmesh/ShapeCast3D.enabled = true
-		#debug shows a non colideable mesh for visual referance 
-		$Lowpoly/testmesh.visible = true
-		#debug for checking if colision is registering
+	
+		$Att_Time.start(.13)
+		if $Att_Time.time_left > 0:
+			#turns on the colision shape for the attack
+			$Lowpoly/testmesh/attk.enabled = true
+			#debug shows a non colideable mesh for visual referance 
+			$Lowpoly/testmesh.visible = true
+			#debug for checking if colision is registering
+				
+			#print($Lowpoly/testmesh/ShapeCast3D.get_collider_rid(0))
+			if $Lowpoly/testmesh/attk.get_collider(0) != null:
+				_hit.emit()
 			
-		#print($Lowpoly/testmesh/ShapeCast3D.get_collider_rid(0))
-		if $Lowpoly/testmesh/ShapeCast3D.is_colliding():
-			_hit.emit(test_mob,1)
 
 
 
 func _on_control_gui_input(event):
 	#_on_control_focus_entered()
 	pass
+
+
 
